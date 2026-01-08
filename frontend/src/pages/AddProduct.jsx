@@ -3,7 +3,7 @@ import { ProductsContext } from "../context/ProductsContext";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-    const {AddProduct} =
+    const {addProduct} =
     useContext(ProductsContext);
     const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const AddProduct = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        AddProduct({name, price, category, image});
+        addProduct({name, price, category, image});
         navigate("/products");
     };
 

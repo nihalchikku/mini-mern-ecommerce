@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const ProductsContext = createContext();
 
@@ -16,7 +16,7 @@ export const ProductsProvider =
 
     const addProduct = async (product) => {
         await
-        fetch("http://locathost:5000/products", {
+        fetch("http://localhost:5000/products", {
             method: "POST",
             headers: {"Content-Type":
                 "application/json"},
@@ -24,10 +24,23 @@ export const ProductsProvider =
         });
     };
 
+    const deleteProduct = async (id) => {
+        await
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: "DELETE",
+        });
+
+        setProducts((prev) =>
+            prev.filter((p)=>
+        p._id !== id));
+    };
+
+    
+
     return (
         <ProductsContext.Provider
             value={{ products,
-                fetchProducts, addProduct }}
+                fetchProducts, addProduct,deleteProduct }}
                 >
                     {children}
                 </ProductsContext.Provider>
