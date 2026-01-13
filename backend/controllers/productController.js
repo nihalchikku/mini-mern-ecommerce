@@ -43,19 +43,19 @@ const deleteProduct = async (req, res) => {
     }
 };
 
-const updateProduct = async (req, res) => {
-    try{
-        const updateProduct = await
-        Product.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            {new: true}
-        );
-        res.json(updateProduct);
-    } catch (err) {
-        res.status(500).json({message: "Update failed"});
-    }
-};
+// const updateProduct = async (req, res) => {
+//     try{
+//         const updateProduct = await
+//         Product.findByIdAndUpdate(
+//             req.params.id,
+//             req.body,
+//             {new: true}
+//         );
+//         res.json(updateProduct);
+//     } catch (err) {
+//         res.status(500).json({message: "Update failed"});
+//     }
+// };
 
 
 module.exports = { addProduct, getProducts, deleteProduct };
