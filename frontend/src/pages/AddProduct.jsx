@@ -61,7 +61,13 @@ const AddProduct = () => {
                 className="border p-2 w-full mb-2" />
                 <button type="submit"
                 className="bg-blue-500 text-white p2 w-full">Add Product</button>
+                 <button 
+            onClick={() => navigate(-1)} 
+            className="bg-gray-700 mt-5 p-1 text-white w-full">
+                Back to Products
+            </button>
         </form>
+        
     );
 };
 

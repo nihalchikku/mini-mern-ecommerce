@@ -1,24 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const { addProduct, getProducts, deleteProduct,updateProduct } = require("../controllers/productController");
+const { getProducts} = require("../controllers/productController");
 const upload = require("../middleware/upload");
 const Product = require("../models/Product");
-
-//Add new product
-// router.post("/",addProduct);
 
 //Get all Products
 router.get("/",getProducts);
 
-//Delete product by id
-router.delete("/:id",deleteProduct);
 
 router.post(
     "/",
     upload.single("image"), async (req, res) => {
         try{
-            console.log("Body:",req.body);
-            console.log("File:",req.file);
+            
 
             if(!req.file) {
                 return res.status(400).json({message: "Image not uploaded"});
@@ -40,7 +34,25 @@ router.post(
     }
 );
 
-// //Update product
-// router.put("/:id",updateProduct);
+// Get single product by id
+router.get("/:id", async (req, res) =>
+{
+    try {
+        const product = await
+        Product.findById(req.params.id);
+
+        if (!product) {
+            return res.status(404).json({
+                message:"Product not found"
+            });
+        }
+
+        res.json(product);
+    } catch (err) {
+        res.status(500).json({messaga: err.message});
+    }
+});
+
+
 
 module.exports = router;

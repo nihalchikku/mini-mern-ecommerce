@@ -24,23 +24,11 @@ export const ProductsProvider =
         });
     };
 
-    const deleteProduct = async (id) => {
-        await
-        fetch(`http://localhost:5000/products/${id}`, {
-            method: "DELETE",
-        });
-
-        setProducts((prev) =>
-            prev.filter((p)=>
-        p._id !== id));
-    };
-
-    
 
     return (
         <ProductsContext.Provider
             value={{ products,
-                fetchProducts, addProduct,deleteProduct }}
+                fetchProducts, addProduct, }}
                 >
                     {children}
                 </ProductsContext.Provider>
